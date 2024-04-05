@@ -1,0 +1,16 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+
+.CODE
+MAIN PROC
+    
+    MOV AH, 2 ;TO DISPLAY
+    MOV DL, 'B' ;TAKE B AS INPUT
+    ADD DL, 20H ; ASCII B(066) + 20 == b(098)
+    INT 21H ;end the process
+
+    MOV AH, 4CH
+    INT 21H
+MAIN ENDP
+END MAIN

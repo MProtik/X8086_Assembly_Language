@@ -1,0 +1,17 @@
+.MODEL SMALL
+.STACK 100H
+.CODE
+MAIN PROC 
+    MOV AX, 4H
+    ADD AX, AX
+    
+    MOV AX, 30H
+    ADD DX, AX
+    
+    MOV AH, 2H
+    INT 21H
+    
+    MOV AH, 4CH
+    INT 21H
+MAIN ENDP
+END MAIN

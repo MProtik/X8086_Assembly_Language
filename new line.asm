@@ -1,0 +1,30 @@
+.MODEL SMALL
+.STACK 100H
+.CODE
+MAIN PROC 
+    MOV AH, 1    ;FOR TAKING INPUT
+    MOV DL, 'A'
+    INT 21H
+
+    MOV BL, AL
+
+    MOV AH, 2
+    MOV DL, 'l' ;DISPLAY
+    INT 21H
+
+    MOV DL, 0AH ; NEW LINE
+    INT 21H
+
+    MOV DL, 0DH ;CURSOR CHANGE
+    INT 21H
+    
+    MOV AH, 2 ; To display
+    MOV DL, BL
+    INT 21H
+
+    MOV AH, 4CH ;To terminate
+    INT 21H 
+
+
+MAIN ENDP
+END MAIN
