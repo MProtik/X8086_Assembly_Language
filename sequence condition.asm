@@ -23,13 +23,13 @@ main proc
     jl less
     je equal
 
-greater:
+less:
     mov ah, 2h
     mov dx, ax
     int 21h
     jmp end
 
-less:
+greater:
     mov ah, 2h
     mov dx, bx
     int 21h
