@@ -1,51 +1,49 @@
 .model small
 .stack 100h
 
-.data
-    minus db '-1', 0DH, 0AH,'$'
-    zero db '0$'
-    pos db 0DH, 0AH,'+1', '$'
-    temp db ?
+.data 
+    eq db 0Dh, 0AH, "Equal$"
 
+    
 .code
 main proc
     mov ax, @data
     mov ds, ax
-    
+
+
     mov ah, 1h
     int 21h
-    sub al, 30h
-    mov temp, al
+    mov bl, al
 
-    mov al, temp
-    mov bl, 135
-    cmp ax, 135
-    jl less
+    mov ah, 1h
+    int 21h
+
+    cmp al, bl 
     jg greater
+    jl less
     je equal
 
-less:
-    mov ah, 09h
-    mov dx, offset minus
+greater:
+    mov ah, 2h
+    mov dx, ax
     int 21h
     jmp end
 
-greater:
-    mov ah, 09h
-    mov dx, offset pos
+less:
+    mov ah, 2h
+    mov dx, bx
     int 21h
     jmp end
+
 
 equal:
+    mov ah, 09h
+    mov dx, offset eq
+    int 21h
     jmp end
 
-
-    mov ah, 2H
-    mov dl, temp
-    int 21h
-
 end:
-    mov ah, 4Ch
+    mov ah, 4ch
     int 21h
 
 main endp
