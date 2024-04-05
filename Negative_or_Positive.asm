@@ -2,9 +2,9 @@
 .stack 100h
 
 .data
-    minus db '-1', 0DH, 0AH,'$'
-    zero db '0$'
-    pos db 0DH, 0AH,'+1', '$'
+    minus db 0DH, 0AH,'-1$'
+    zeroo db 0DH, 0AH,'0$'
+    pos db 0DH, 0AH,'+1$'
     temp db ?
 
 .code
@@ -14,33 +14,41 @@ main proc
     
     mov ah, 1h
     int 21h
-    mov temp, al
+    mov bl, al
 
-    mov al, temp
-    cmp ax, 5
-    jl less
-    jg greater
-    je equal
+    mov ah, 1h
+    int 21h
 
-less:
+    cmp bl, '+'
+    je positive
+
+    cmp bl, '-'
+    je negetive
+
+    cmp bl, '0'
+    je zero
+
+    jmp positive
+
+negetive:
     mov ah, 09h
     mov dx, offset minus
     int 21h
     jmp end
 
-greater:
+positive:
     mov ah, 09h
     mov dx, offset pos
     int 21h
     jmp end
 
-equal:
+zero:
+    mov ah, 09h
+    mov dx, offset zeroo
+    int 21h
     jmp end
 
 
-    mov ah, 2H
-    mov dl, temp
-    int 21h
 
 end:
     mov ah, 4Ch
