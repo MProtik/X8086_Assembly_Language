@@ -1,14 +1,14 @@
 .MODEL SMALL
 .STACK 100H
 .DATA 
-    CHE DB ?
+    TEMP DB ?
 .CODE
 MAIN PROC
     MOV AH, 1H
     INT 21H
-    MOV CHE, AL
+    MOV TEMP, AL
 
-    MOV DL, CHE
+    MOV DL, TEMP
     MOV AH, 2H
     INT 21H
 

@@ -4,11 +4,10 @@
 MAIN PROC 
     MOV AX, 4H
     ADD AX, AX
-    
-    MOV AX, 30H
-    ADD DX, AX
-    
-    MOV AH, 2H
+    ADD AX, 30H
+    MOV DX, AX
+
+    MOV AX, 02H
     INT 21H
     
     MOV AH, 4CH

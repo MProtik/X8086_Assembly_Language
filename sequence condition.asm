@@ -1,10 +1,8 @@
 .model small
 .stack 100h
-
 .data 
     eq db 0Dh, 0AH, "Equal$"
 
-    
 .code
 main proc
     mov ax, @data
